@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "keyofStringsOnly": true,
     "outDir": "build/dist",
     "module": "esnext",
     "target": "es5",
@@ -12,7 +11,6 @@
     "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
     "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": false,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
