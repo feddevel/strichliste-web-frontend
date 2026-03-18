@@ -1,6 +1,8 @@
 import { Dispatch } from '../store';
 import { LoaderTypes, setGlobalError, setLoader } from '../store/reducers';
 
+type ErrorMessages = Record<string, string>;
+
 function handleApiError(
   dispatch: Dispatch,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -10,9 +12,10 @@ function handleApiError(
   const [key] = Object.keys(config.errors || {}).filter(key =>
     error.class.includes(key)
   );
+  const message = key ? config.errors?.[key] : undefined;
 
-  if (key && config.errors && config.errors[key]) {
-    dispatch(setGlobalError(config.errors[key]));
+  if (message) {
+    dispatch(setGlobalError(message));
   } else {
     dispatch(setGlobalError(config.defaultError || ''));
   }
@@ -26,7 +29,7 @@ export interface MaybeResponse {
 
 export interface ErrorConfig<Result> {
   loader?: LoaderTypes;
-  errors?: {};
+  errors?: ErrorMessages;
   defaultError?: string;
   promise: Promise<Result>;
 }
