@@ -76,7 +76,7 @@ export async function startLoadingUsers(
   dispatch: Dispatch,
   isActive?: boolean
 ): Promise<void> {
-  const params: { deleted?: string; active?: string } = {};
+  const params: { [key: string]: string | undefined; deleted?: string; active?: string } = {};
   params.deleted = 'false';
   if (isActive !== undefined) {
     params.active = isActive.toString();
