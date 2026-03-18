@@ -82,10 +82,8 @@ export async function startLoadingUsers(
     params.active = isActive.toString();
   }
   const promise = get(
-    `user${Object.keys(params).reduce((paramString, param, index) => {
-      const next = `${paramString}${index === 0 ? '?' : '&'}${param}=${
-        params[param]
-      }`;
+    `user${Object.entries(params).reduce((paramString, [param, value], index) => {
+      const next = `${paramString}${index === 0 ? '?' : '&'}${param}=${value}`;
       return next;
     }, '')}`
   );
